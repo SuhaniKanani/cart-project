@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to cart</title>
+    <style>
+        
+        .card {
+            background-color: #CCD7D8;
+            border-radius: 15px;
+            box-shadow: 3px 3px 8px gray;
+            margin-bottom: 20px;
+            height: 350px;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        .del {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-image: linear-gradient(rgb(59, 182, 204), rgb(217, 63, 255));
+            border: none;
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="carts" id="cart"></div>
+
+    <button class="del" onclick="del()">Delete all</button>
+
+    <script>
+
+        let carts = document.getElementById('cart');
+
+        let cartData = localStorage.getItem('cart');
+
+        console.log(cartData);
+
+        let data = JSON.parse(cartData);
+
+        console.log(data)
+
+        data.forEach(val => {
+
+            carts.innerHTML += `<div class='card'>
+                <img src='${val.img}'>
+                <h2>Name: ${val.name} </h2> <h3>Price: ${val.price} </h3>  </div>`
+
+        });
+
+        function del() {
+
+            localStorage.clear()
+
+            window.location.reload();
+        }
+
+
+    </script>
+
+</body>
+
+</html>
